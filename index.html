@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottie Animation with GSAP ScrollTrigger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+</head>
+<body class="h-[200vh] bg-red-500" >
+    <div id="animation-container" class="bg-white" style="width: 100%; height: 100vh;">
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const animation = lottie.loadAnimation({
+                container: document.getElementById('animation-container'),
+                renderer: 'svg',
+                loop: false,
+                autoplay: false,
+                path: './lo.json' 
+            });
+        
+            animation.addEventListener('DOMLoaded', function() {
+               
+                setupScrollTrigger(animation);
+            });
+        });
+
+
+        function setupScrollTrigger(animation) {
+            gsap.registerPlugin(ScrollTrigger);
+        
+            ScrollTrigger.create({
+                trigger: '#animation-container', 
+                start: 'top 0%', 
+                end: 'top -100%', 
+                scrub: 1, 
+                markers: true, 
+                pin: true,
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    animation.goToAndStop(progress * animation.totalFrames, true);
+                }
+            });
+        }
+        
+        
+    </script>
+</body>
+</html>
