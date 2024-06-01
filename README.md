@@ -10,4 +10,4 @@ This document provides an example of how to control a Lottie animation using Scr
 
 Here is an example image:
 
-![Alt Text for Image]('./Screenshot 2024-06-02 004311.png' "Title for Image")
+![Alt Text for Image](https://hitesh09saini.github.io/LottieControlSCroll/Screenshot%202024-06-02%20004311.png "Title for Image")
